@@ -3,17 +3,13 @@
 abstract class GoodsBoock{ //Основоной класс книг
 	private $name; // Название книги
 	private $price; // Цена книги
-	protected $counts; //Массив собирающий бабки с продаж, котрый нихера не работает
-	
+
 	function __construct($name, $price){
 		$this->name = $name;
 		$this->price = $price;
-		//$this->counts[$this->get_name()] = $this->get_price();
-		$this->counts += $this->get_price();
-		return $this->final_cost();
-		
+		return $this->final_cost(); //автоматически запускаем добавление цены в статик переменную
 		}
-	
+
 	public function get_name(){
 		return $this->name;
 	}
@@ -26,11 +22,11 @@ abstract class GoodsBoock{ //Основоной класс книг
 }
 
 
-
-
 class DigitalProduct extends GoodsBoock{ // Класс электронных книг
 	
 	const DIGITAL_BOOCK = 'Электронная книга';
+	
+	public static $lol;
 	
 	function lol($per){ //Если существует передаваемый объект (из класса поштучных книг), то берем его имя и стоимость, которую делим на два
 		if(isset($per)){
@@ -39,7 +35,7 @@ class DigitalProduct extends GoodsBoock{ // Класс электронных к
 		}
 	}
 	
-	function show(){
+	function show(){ 
 		$price_digital = $this->get_price();
 		echo 'Название: ' . $this->get_name() . '</br>';
 		echo 'Цена: ' . $price_digital / 2 . '</br>';
@@ -47,7 +43,12 @@ class DigitalProduct extends GoodsBoock{ // Класс электронных к
 	}
 	
 	function final_cost(){
+		$price_digital = $this->get_price();
+		self::$lol += $price_digital / 2;
+		}
 	
+	function show_count(){
+		echo "Общая стоимость категории - " . self::DIGITAL_BOOCK . ": " . self::$lol . " рублей</br>"; //Показ стоимости
 	}
 }
 	
@@ -55,7 +56,8 @@ class DigitalProduct extends GoodsBoock{ // Класс электронных к
 class PieceGoods extends GoodsBoock{ // Класс поштучных книг
 	
 	const PIECE_BOOCK = 'Поштучный товар';
-	//public $counts = [];
+	
+	public static $lol;
 	
 	function show($per, $count){
 		echo 'Название: ' . $this->get_name() . '</br>';
@@ -76,8 +78,16 @@ class PieceGoods extends GoodsBoock{ // Класс поштучных книг
 	}
 	
 	function final_cost(){
-		//echo $this->counts + $this->counts;
+		self::$lol += $this->get_price();
 		}
+	
+	function show_count(){
+		echo "Общая стоимость категории - " . self::PIECE_BOOCK . ": " . self::$lol . " рублей</br>";
+		DigitalProduct::show_count();
+		WeighingGoods::show_count();
+		//Показ стоимости
+	}
+	
 	}
 
 
@@ -85,6 +95,8 @@ class PieceGoods extends GoodsBoock{ // Класс поштучных книг
 class WeighingGoods extends GoodsBoock{ // Класс книг на развес
 	
 	const WEIGHING_BOOCK = 'Книги на развес';
+	
+	public static $lol;
 	
 	function lol($per, $count){ //Если существует передаваемый объект (из класса поштучных книг), то берем его имя и стоимость, которую высчитываем из переданых килограммов
 		if(isset($per)){
@@ -98,30 +110,37 @@ class WeighingGoods extends GoodsBoock{ // Класс книг на развес
 		echo 'Название: ' . $this->get_name() . '</br>';
 		echo 'Цена: ' . round($price_digital / 3 * $count) . '</br>';
 		echo 'Категория: ' . self::WEIGHING_BOOCK . '</br></br>';
+		self::weigh($count);
 	}
 	
 	function final_cost(){
+		}
+	
+	function weigh($count){
+		self::$lol += round($this->get_price() / 3 * $count);
 	}
 	
-}
-
-
-class Finals extends PieceGoods{
-	function final_cost(){
+	function show_count(){
+		echo "Общая стоимость категории - " . self::WEIGHING_BOOCK . ": " . self::$lol . " рублей</br>";
+		//Показ стоимости
 	}
+	
 }
 
 $Cindrella = new PieceGoods('Золушка', 200); // создаем книгу Золушка
 $Cindrella->show($Cindrella, 2);
-//$Cindrella->final_cost();
-
 
 $Master = new PieceGoods('Мастер и Маргарита', 350); // создаем книгу Мастер и Маргарита
 $Master->show($Master, 3);
-//$Master->final_cost();
+
+$Master = new PieceGoods('Идиот', 150); // создаем книгу Мастер и Маргарита
+$Master->show($Master, 3);
+$Master->show_count();
+
+//$Twst = new DigitalProduct(0,0);
+//$Twst->show_count();
 
 
-$test = new Finals
 
 
 
