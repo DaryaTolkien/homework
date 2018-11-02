@@ -1,0 +1,11 @@
+{% extends "index.tmpl" %}
+
+{% block content %}
+	  <span>PICTURES IN SMALL SIZE</span>
+		  
+	  <div class="image">
+		   {% for item in data %}
+            <a href='lol.php?id={{item}}'><img src='/images/{{ item }}' class='small'></a> 
+           {% endfor %}  
+	  </div>
+{% endblock %}

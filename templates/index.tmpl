@@ -1,0 +1,16 @@
+
+<html>
+  <head>
+	<link href="style.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=KoHo:300" rel="stylesheet">
+</head>
+  <body>
+	  <header>
+		  {% include 'header.tmpl' %}
+	  </header>
+	  <div class="content">
+		  {% block content %}
+		  {% endblock %} 
+	  </div>
+  </body>
+</html>
