@@ -1,0 +1,48 @@
+body{
+	margin: 0px;
+	display: flex;
+	flex-direction: column;
+	font-family: 'KoHo', sans-serif;
+	font-size: 25px;
+}
+
+header{
+    background: linear-gradient(to left, #c370ff, #8f5bff);
+	text-align: center;
+	padding: 20px;
+	color: white;
+}
+
+.content{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-content: center;
+	padding-top: 30px;
+	text-align: center;
+	flex-grow: 3;
+}
+
+.image{
+	padding: 40px;
+}
+
+.small{
+	width: 400px;
+	height: 400px;
+}
+
+.big{
+	width: 700px;
+	height: 700px;
+}
+
+.back{
+    display: inline-block;
+	background: linear-gradient(to top, #bf00ff, #8f5bff);
+	text-decoration: none;
+	color: white;
+	padding: 10px;
+	border-radius: 3px;
+	margin-top: 10px;
+}
