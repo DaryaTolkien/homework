@@ -30,29 +30,27 @@ function prepareVariables($page_name, $action = ""){
 			$vars["content"] = get_content();
 			$vars["basket"] = prepareBasketBlock(session_id());
 			$vars["more"] = '';
-			//print_r(get_content());
-			if(isset($_POST['count_add']) && isset($_POST["count_show"])){
+
+			
+			//if(isset($_POST['count_add']) && isset($_POST["count_show"])){
 			  $countView = (int)$_POST['count_add'];  // количество записей, получаемых за один раз
               $startIndex = (int)$_POST['count_show']; // с какой записи начать выборку
-			  $count = get_more($startIndex, $countView);
-			  $vars["more"] = $count;
-			  $html = $count;
+			  $vars["more"] = get_more($startIndex, $countView);
+			  $html = 'lol';
+			print_r($countView);
 				if(empty($html)){// если новостей нет
                 echo json_encode(array(
-                'result' => 'finish'
-                  )); }
-	             else{
+                result => 'finish'
+                  )); } 
+				else {
 			  $html = 'TEST';
 		      echo json_encode(array(
               'result'  => 'success',
 		       'html' => $html
                  ));
               } 
-			} else {
-		         echo json_encode(array(
-                 'result'  => 'finish',
-                 ));
-			}
+			//}
+			
 			
 			break;
 		case "login":
