@@ -1,0 +1,42 @@
+body{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-content: center;
+	font-family: 'Playfair Display', serif;
+	background-color: antiquewhite;
+	font-size: 25px;
+}
+
+.form{
+	align-self: center;
+	margin-top: 150px;
+}
+
+.form input[type="text"]{
+	display: block;
+	margin: 20px;
+	width: 200px;
+	height: 30px;
+	border: 1px solid pink;
+    font-family: 'Playfair Display', serif;
+	text-align: center;
+	padding: 20px;
+}
+
+.form #button{
+	text-align: center;
+	border: 1px solid darkgray;
+	background-color: transparent;
+	margin: 20px;
+	padding: 20px;
+	font-family: 'Playfair Display', serif;
+	display: block;
+	margin-left: 110px;
+}
+
+.form .input:focus{
+	outline: none;
+    box-shadow: 0 0 3px 3px lightyellow;
+	
+}	
