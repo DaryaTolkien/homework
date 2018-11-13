@@ -1,0 +1,13 @@
+{% include 'header.html' %}
+
+<div class="content">
+	
+	<span style="color: blueviolet; font-size: 32px; margin: 10px;">Great!</span>
+	{% for counts in count %}
+	<div style="font-size: 27px; margin: 15px;">In the your basket <span style="font-weight: 600; color: cornflowerblue; text-decoration: underline;">{{ counts.count }}</span> items, cost <span style="font-weight: 600; color: cornflowerblue; text-decoration: underline;">{{ counts.amount }}</span> &#8381;</div>
+	<div>Do you want to an order?</div>
+	<a href="/basket/?value=success" class="button-success">CONFIRM</a>
+	{% endfor %}		
+</div>
+
+{% include 'footer.html' %}

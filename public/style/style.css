@@ -1,0 +1,258 @@
+body, html{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 0px;
+	margin: 0px;
+	font-family: 'Quicksand', sans-serif;
+	font-size: 24px;
+}
+
+header{
+	background: linear-gradient(to left, #dbf7ff, #ffe2f7);
+	display: flex;
+	flex-direction: row;
+	position: relative;
+	padding-top: 20px;
+}
+
+.menu-li{
+	list-style: none;
+	display: inline-block;
+	padding: 20px;
+}
+
+.menu-link{
+	text-decoration: none;
+	color: #545454;
+}
+
+header .basket{
+	position: fixed;
+    width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	top: 0;
+	background-color: #FFEFD5;
+	padding: 5px;
+}
+
+.basket-span a{
+	margin-right: 200px;
+	color: #b672ff;
+}
+
+/*Хеадер для админки*/
+.admin-header{
+	padding: 20px;
+	margin: auto;
+}
+
+/*Страница Индекс каталог*/
+
+.content{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items:center;
+}
+
+.catalog{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.product{
+	text-align: center;
+	padding: 20px;
+	margin: 25px;
+	border: 1px solid darkgray;
+}
+
+.catalog-image{
+	width: 250px;
+	height: 300px;
+}
+
+.book-title{
+	display: block;
+	margin: 10px;
+}
+
+.buy-button{
+	border: none;
+	background: linear-gradient(to right, #dbf7ff, #ffe2f7);
+	padding: 10px;
+	width: 80px;
+	text-decoration: none;
+	color: #545454;
+}
+
+.price-book{
+	font-size: 27px;
+	margin: 10px;
+}
+
+
+/*Страница одного товара с подробностями*/
+
+.catalog-good{
+	display: flex;
+	flex-direction: row;
+}
+
+.content-good{
+	display: flex;
+	flex-direction: row;
+}
+
+.product-good{
+	text-align: center;
+	padding: 20px;
+	margin: 25px;
+	border: 1px solid darkgray;
+}
+
+.catalog-image-good{
+	width: 300px;
+	height: 400px;
+	align-self: flex-start;
+	display: inline-block;
+}
+
+.book-title-good{
+	margin: 20px;
+}
+
+.desription-book{
+	
+}
+
+/*Страница корзины*/
+
+.form-basket{
+	text-align: center;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-self: center;
+}
+
+.tablebas{
+	border-collapse: collapse; 
+	width: 60%;
+	text-align: center;
+	align-self: center;
+	margin: 20px;
+	font-size: 22px;
+}
+
+.tablebas td{
+	padding: 10px;
+}
+
+.tablebas th{
+	padding: 10px;
+	font-weight: 600;
+	font-size: 27px;
+}
+
+.tablebas a{
+	text-decoration: none;
+}
+
+
+.checkout{
+	width: 30%;
+	text-align: center;
+	display: inline-block;
+	align-self: center;
+	padding: 10px;
+	margin: 5px;
+    font-family: 'Quicksand', sans-serif;
+	font-size: 20px;
+}
+.checkout-button{
+	width: 150px;
+	background: linear-gradient(to left, #f5c6ff, #ffe2f7);
+	border: none;
+	margin-bottom: 30px;
+}
+
+/*Страница успеха корзины*/
+.button-success {
+	width: 150px;
+	background: linear-gradient(to left, #f5c6ff, #ffe2f7);
+	border: none;
+	margin-bottom: 30px;
+	margin-top: 20px;
+	padding: 15px;
+	text-align: center;
+	text-decoration: none;
+}
+
+
+/* Футер */
+
+footer{
+	background: linear-gradient(to left, #dbf7ff, #ffe2f7);
+	flex-direction: row;
+	padding-top: 20px;
+	height: 150px;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+/*Блок Логина и Авторизации*/
+
+
+.login-form{
+	border: 1px solid darkgray;
+	padding: 20px;
+	margin: 20px;
+	text-align: center;
+	font-family: 'Quicksand', sans-serif;
+}
+
+.login-form input{
+	padding: 10px;
+	margin: 10px 3px;
+	border: 1px solid lightgray;
+}
+
+.login-form input[type="submit"]{
+	display: inline-block;
+	margin-top: 20px;
+	padding: 10px 30px;
+	text-align: center;
+	background-color: #f5c6ff;
+	border: none;
+	transition-property: all;
+	transition-duration: 0.4s;
+}
+
+.login-form input[type="submit"]:hover{
+	background-color: #ffc6c6;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{ title }}</title>
+    </head>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript" src="js/category.js"></script>
+	<link href="/style/style.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Quicksand:300" rel="stylesheet">
+    <body>
+		<header>
+        <ul>
+            {% for category in categories %}
+            <li class="menu-li">
+                <a href="{{ category.url }}" link="{{ category.id }}" class="menu-link">{{ category.name }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+			{% for counts in count %}
+			<div class="basket"><span class="basket-span"><a href="/basket/" class="menu-link">&#8381; : {{ counts.amount }}</a></span></div>
+			{% endfor %}
+         </header>
+		 
+
+

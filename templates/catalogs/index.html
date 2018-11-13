@@ -1,0 +1,17 @@
+{% include 'header.html' %}
+
+<div class="content-good">
+<div class="catalog-good">
+	{% for good in content_data.goods %}
+            <div class="product-good">
+				  <div class="book-title-good">{{ good.title }}</div>
+				  <img src="/images/{{ good.image }}" class="catalog-image-good">
+			 <div class="price-book">{{ good.price }} &#8381;</div>
+				<div class="desription-book">{{ good.description }}</div>
+				
+            </div>
+	{% endfor %}
+</div>
+</div>
+
+{% include 'footer.html' %}

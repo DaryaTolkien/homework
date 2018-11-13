@@ -1,0 +1,25 @@
+{% include 'header.html' %}
+
+<div class="content">
+<span style="margin: 30px;">BOOKS CATALOG</span>
+<div class="catalog">
+{% for catalog in catalogs %}
+	
+            <div class="product">
+				
+                <a href="/catalog/?id={{ catalog.id }}" class="menu-link">
+				  <div class="book-title">{{ catalog.title }}</div>
+				  <img src="/images/{{ catalog.image }}" class="catalog-image">
+			 <div class="price-book">{{ catalog.price }} &#8381;</div>
+				</a>
+				
+				<!--<a class="buy-button" href="/basket/?id={{ catalog.id }}">Add</a> -->
+				<form action="/basket/"  method='post'>
+				<input type="submit" value="add" class="buy-button" name="getgood">
+				<input type="hidden" name="id" value="{{ catalog.id }}">
+				</form>
+            </div>
+{% endfor %}
+</div>
+</div>
+{% include 'footer.html' %}

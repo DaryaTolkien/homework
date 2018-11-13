@@ -1,0 +1,50 @@
+{% include 'admin_header.html' %}
+<div class="content">
+<div class="button-success"><a href="/admin/?loggout=exit" class="button-success">loggout</a></div>
+	
+	<span style="margin: 20px;">ORDERING</span>
+	
+	<span style="color: crimson;">active</span>
+	<form action="/admin/" class="form-basket" method="post">
+	 <table border="1" class="tablebas">
+   <tr>
+    <th>id_good</th>
+    <th>name</th>
+	<th>address</th>
+	<th>tel</th>
+	<th> </th>
+   </tr>
+		 
+	{% for activ in content_data.active %}
+<tr><td>{{ activ.id_good }}</td><td>{{ activ.name }}</td><td>{{ activ.address }}</td><td>{{ activ.tel }}</td><td><input type="submit" name="del" value="archiv"></td></tr>
+		 <input type="hidden" name="idx" value="{{ activ.idx }}">
+		 <input type="hidden" name="id_good" value="{{ activ.id_good }}">
+		 <input type="hidden" name="name" value="{{ activ.name }}">
+		 <input type="hidden" name="address" value="{{ activ.address }}">
+		 <input type="hidden" name="tel" value="{{ activ.tel }}">
+	{% endfor %}	 
+
+	</table>
+	</form>
+	
+		<span style="color: crimson;">archiv</span>
+	<form action="/admin/" class="form-basket" method="post">
+	 <table border="1" class="tablebas">
+   <tr>
+    <th>id_good</th>
+    <th>name</th>
+	<th>address</th>
+	<th>tel</th>
+	<th> </th>
+   </tr>
+		 
+	{% for activ in content_daa.active %}
+<tr><td>{{ activ.id_good }}</td><td>{{ activ.name }}</td><td>{{ activ.address }}</td><td>{{ activ.tel }}</td><td><a href="/admin/?del={{ good.idx }} ">archive</a></td></tr>
+	{% endfor %}	 
+	
+	</table>
+		
+	</form>
+	
+<div style="margin-bottom: 100px;"></div>
+</div>

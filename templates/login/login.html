@@ -1,0 +1,16 @@
+<span style="margin: 30px;">LOGIN</span>
+
+	<form action="/login/" class="login-form" method="post">
+	<input type="login" placeholder="Your login" name="login" required>
+	<input type="password" placeholder="Your Password" name="password" required>
+		<input type="submit" value="Login" name="log">
+	</form>
+	<span style="color: crimson; margin: 20px;">{{ content_data.login }}</span>
+
+	<span style="margin: 30px;">CREATE AN ACCOUNT</span>
+	<form action="/login/" class="login-form" method="post">
+	<input type="login" placeholder="Your login" name="login" required>
+	<input type="password" placeholder="Your Password" name="password" required>
+	<input type="text" placeholder="Your Name" name="name" required>
+		<input type="submit" value="create an account" name="creat">
+	</form>
