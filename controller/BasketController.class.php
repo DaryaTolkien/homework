@@ -2,6 +2,12 @@
 
 class BasketController extends Controller{
 	
+	function __construct()
+    {
+        parent::__construct();
+        $this->title .= ' | Корзина';
+    }
+	
 	public $view = 'basket';
 	
 	public function index($data){

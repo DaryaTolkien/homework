@@ -20,11 +20,32 @@ header{
 	list-style: none;
 	display: inline-block;
 	padding: 20px;
+	position: relative;
 }
 
 .menu-link{
 	text-decoration: none;
 	color: #545454;
+}
+
+.menu-li a:after {
+    display: block;
+    content: "";
+    background-color: #545454;
+    height: 1px;
+    width: 0%;
+	left: 50%;
+    position:absolute;
+    -webkit-transition: width .3s ease-in-out;
+    -moz--transition: width .3s ease-in-out;
+    transition: width .3s ease-in-out;
+    -webkit-transform:translateX(-50%);
+    -moz-transform:translateX(-50%);
+    transform:translateX(-50%);
+}
+.menu-li a:hover:after,
+.menu-li a:focus:after {
+    width: 100%;
 }
 
 header .basket{
@@ -34,7 +55,7 @@ header .basket{
 	flex-direction: row;
 	justify-content: flex-end;
 	top: 0;
-	background-color: #FFEFD5;
+	background-color: rgba(255,	239, 213, 0.9);
 	padding: 5px;
 }
 
@@ -49,7 +70,7 @@ header .basket{
 	margin: auto;
 }
 
-/*Страница Индекс каталог*/
+/*Страница главная (каталог)*/
 
 .content{
 	display: flex;
@@ -64,6 +85,12 @@ header .basket{
 	justify-content: center;
 	align-items: center;
 	flex-wrap: wrap;
+}
+
+.select_auhtor{
+	padding: 10px;
+	align-self: flex-start;
+    margin-left: 10%;
 }
 
 .product{
@@ -85,12 +112,19 @@ header .basket{
 
 .buy-button{
 	border: none;
-	background: linear-gradient(to right, #dbf7ff, #ffe2f7);
+	background-color: #f5c6ff;
 	padding: 10px;
 	width: 80px;
 	text-decoration: none;
 	color: #545454;
+	transition-property: all;
+	transition-duration: 0.4s;
 }
+
+.buy-button:hover{
+	background-color: #ffc6c6;
+}
+
 
 .price-book{
 	font-size: 27px;
@@ -183,6 +217,7 @@ header .basket{
 	border: none;
 	margin-bottom: 30px;
 }
+
 
 /*Страница успеха корзины*/
 .button-success {

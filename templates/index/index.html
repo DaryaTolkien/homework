@@ -2,6 +2,14 @@
 
 <div class="content">
 <span style="margin: 30px;">BOOKS CATALOG</span>
+	<select class="select_auhtor" onchange=f(this.value)>
+{% for auhtors in content_data.get_auhtor %}
+    <option value="{{ auhtors.id_auhtor }}" class="option_auhtor"> {{ auhtors.surname }} </option>
+{% endfor %}
+    </select>
+	
+<div id='x'></div>
+	
 <div class="catalog">
 {% for catalog in catalogs %}
 	
@@ -12,8 +20,7 @@
 				  <img src="/images/{{ catalog.image }}" class="catalog-image">
 			 <div class="price-book">{{ catalog.price }} &#8381;</div>
 				</a>
-				
-				<!--<a class="buy-button" href="/basket/?id={{ catalog.id }}">Add</a> -->
+		
 				<form action="/basket/"  method='post'>
 				<input type="submit" value="add" class="buy-button" name="getgood">
 				<input type="hidden" name="id" value="{{ catalog.id }}">
@@ -23,3 +30,18 @@
 </div>
 </div>
 {% include 'footer.html' %}
+
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script>
+function f(id_auhtor){
+	$.ajax({
+		type: "POST",
+		url: "/",
+		data: {id_auhtor}
+	}).done(function(answer) {
+
+		$("#x").html(answer);
+		  });
+	}
+
+</script>

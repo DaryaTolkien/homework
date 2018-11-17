@@ -2,6 +2,12 @@
 
 class LoginController extends Controller{
 	
+	function __construct()
+    {
+        parent::__construct();
+        $this->title .= ' | Вход';
+    }
+	
     public $view = 'login';
 	public $action;
 	public $log; //Если никто не залогинен то выводим блок входа или регистрации
