@@ -7,27 +7,24 @@
     <option value="{{ auhtors.id_auhtor }}" class="option_auhtor"> {{ auhtors.surname }} </option>
 {% endfor %}
     </select>
-	
-<ul id='x'>
-	
-</ul>
-	
+<div id="x" class="catalog"></div>
 <div class="catalog">
 {% for catalog in catalogs %}
-	
             <div class="product">
 				
-                <a href="/catalog/?id={{ catalog.id }}" class="menu-link">
+                <a href="/catalog/?id={{ catalog.id }}" class="menu-link" id="id">
 				  <div class="book-title" id="name">{{ catalog.title }}</div>
-				  <img src="/images/{{ catalog.image }}" class="catalog-image">
+				  <img src="/images/{{ catalog.image }}" class="catalog-image" id="image">
 			 <div class="price-book" id="price">{{ catalog.price }} &#8381;</div>
 				</a>
+
 		
 				<form action="/basket/"  method='post'>
 				<input type="submit" value="add" class="buy-button" name="getgood">
 				<input type="hidden" name="id" value="{{ catalog.id }}">
 				</form>
-            </div>
+		
+       </div>
 {% endfor %}
 </div>
 </div>
@@ -47,13 +44,17 @@ function f(id_auhtor){
         },
 	    success: function (response) {
 			var obj = jQuery.parseJSON(response);
-			//$("#x").html(obj[0].description);
+			var table = '';
             $.each(obj, function(key,value) {
-			$('#x').append('<li>' +value.title + '</li>');
-			$('#x').append('<li><a href="catalog/?id=' +value.id + '"class="menu-link">ff</a></li>');
-			$('#x').append('<li><img src="/images/' +value.image + '" class="catalog-image"></li>');
-		    $('#x').append('<li>' +value.price + '</li>');
-             }); 
+            table += '<div class="product">';
+			table += '<a href="catalog/?id=' +value.id + '"class="menu-link">';
+			table += '<div>' +value.title + '</div>';
+			table += '<img src="/images/' +value.image + '" class="catalog-image">';
+			table += '<div class="price-book" id="price">' +value.price + ' &#8381;</div></a>';
+			table += '<a href="/basket/?getgood=' +value.id + '" class="catalog_buy-button">add</a></div>';
+			$('#x').empty();
+			$('#x').append(table);
+             });
 	}
 	});
    }
