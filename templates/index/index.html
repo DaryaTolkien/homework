@@ -30,29 +30,24 @@
 </div>
 </div>
 {% include 'footer.html' %}
-
+ 
 <script type="text/javascript" src="/js/jquery.js"></script>
 <script>
 function f(id_auhtor){
 	$.ajax({
-		type: "POST",
+		type: "GET",
 		url: "/",
-		data: {id_auhtor}
-	}).done(function(response) {
-		    var data = response; 
-		    $("#x").html(data[1].['title']);
-		try {
-			alert('YES!');
-            } catch (e) {
-              console.log(e instanceof SyntaxError); // true
-              console.log(e.message);                // "missing ; before statement" - перед инструкцией отсутствует символ ;
-              console.log(e.name);                   // "SyntaxError"
-              console.log(e.fileName);               // "Scratchpad/1"
-              console.log(e.lineNumber);             // 1
-              console.log(e.columnNumber);           // 4
-              console.log(e.stack);                  // "@Scratchpad/1:2:3\n"
-	          alert('NOOOOO!');
-}
+		data: {id_auhtor},
+		dataType: 'json', 
+		error: function (req, text, error) { // отслеживание ошибок во время выполнения ajax-запроса
+            alert('Хьюстон, У нас проблемы! ' + text + ' | ' + error);
+        },
+	    success: function (response) {
+			$("#x").html(response);
+			//var obj = jQuery.parseJSON(response);
+			
+          //$('#x').attr('value', result.id_product);
+	}
 	});
    }
 </script>

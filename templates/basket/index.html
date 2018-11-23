@@ -9,11 +9,12 @@
    <tr>
     <th>title</th>
     <th>price</th>
+	<th>count</th>
 	<th> </th>
    </tr>
 		 
 	{% for good in basket %}
-<tr><td>{{ good.title }}</td><td>{{ good.price }}</td><td><a href="/basket/?del={{ good.idx }} ">delete</a></td></tr>
+<tr><td>{{ good.title }}</td><td>{{ good.price }}</td><td>{{ good.count }}</td><td><a href="/basket/?del={{ good.idx }} ">delete</a></td></tr>
 		 <input type="hidden" name="idx" value="{{ good.id_good }}">
 	{% endfor %}	 
 	

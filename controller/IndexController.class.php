@@ -14,11 +14,13 @@ class IndexController extends Controller{
 	
 	public function index($data) {
 		
-	if($_POST['id_auhtor']){
-		$id = (int)($_POST['id_auhtor']);
+	if($_GET['id_auhtor']){
+		$id = (int)($_GET['id_auhtor']);
 		$select_ajax = Catalog::SelectAuhtor($id);
-		echo json_encode($select_ajax);
-		
+		$json['catalog'] = $select_ajax;
+		//header('Content-Type: application/json');
+		echo json_encode($json);
+	
 	} else {
 		
 		$select = Catalog::getAuhtor(); 

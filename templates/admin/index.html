@@ -1,33 +1,29 @@
 {% include 'admin_header.html' %}
 <div class="content">
-<div class="button-success"><a href="/admin/?loggout=exit" class="button-success">loggout</a></div>
 	
 	<span style="margin: 20px;">ORDERING</span>
 	
-	<span style="color: crimson;">active</span>
-	<form action="/admin/" class="form-basket" method="post">
+	<span style="color: crimson;">active orders</span>
+	
 	 <table border="1" class="tablebas">
    <tr>
     <th>id_good</th>
     <th>name</th>
 	<th>address</th>
 	<th>tel</th>
+	<th>count</th>
 	<th> </th>
    </tr>
 		 
 	{% for activ in content_data.active %}
-<tr><td>{{ activ.id_good }}</td><td>{{ activ.name }}</td><td>{{ activ.address }}</td><td>{{ activ.tel }}</td><td><input type="submit" name="del" value="archiv"></td></tr>
-		 <input type="hidden" name="idx" value="{{ activ.idx }}">
-		 <input type="hidden" name="id_good" value="{{ activ.id_good }}">
-		 <input type="hidden" name="name" value="{{ activ.name }}">
-		 <input type="hidden" name="address" value="{{ activ.address }}">
-		 <input type="hidden" name="tel" value="{{ activ.tel }}">
+<tr><td>{{ activ.id_good }}</td><td>{{ activ.name }}</td><td>{{ activ.address }}</td><td>{{ activ.tel }}</td><td>{{ activ.count }}</td><td><a href="/admin/?archiv={{ activ.idx }}" class="execute_admin">execute</a></td></tr>
 	{% endfor %}	 
 
+		 
 	</table>
-	</form>
+	 <div class="line" style="margin-top: 50px;"></div>
 	
-		<span style="color: crimson;">archiv</span>
+		<span style="color: crimson;">archiv orders</span>
 	<form action="/admin/" class="form-basket" method="post">
 	 <table border="1" class="tablebas">
    <tr>
@@ -35,11 +31,11 @@
     <th>name</th>
 	<th>address</th>
 	<th>tel</th>
-	<th> </th>
+	<th>count</th>
    </tr>
 		 
-	{% for activ in content_daa.active %}
-<tr><td>{{ activ.id_good }}</td><td>{{ activ.name }}</td><td>{{ activ.address }}</td><td>{{ activ.tel }}</td><td><a href="/admin/?del={{ good.idx }} ">archive</a></td></tr>
+	{% for ar in content_data.archiv %}
+<tr><td>{{ ar.id_good }}</td><td>{{ ar.name }}</td><td>{{ ar.address }}</td><td>{{ ar.tel }}</td><td>{{ ar.count }}</td></tr>
 	{% endfor %}	 
 	
 	</table>

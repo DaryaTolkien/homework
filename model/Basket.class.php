@@ -4,20 +4,24 @@ class Basket extends Model{
 	
 	protected static $table = 'basket';
 	
-	   protected static function setProperties()
-    {
-        self::$properties['amount'] = [
-            'type' => 'string',
-            'size' => 3
-        ];
-    }
-	
 	public static function setBasket($id, $session){ //Добавим товары в корзину
 		
 		header("location: /");
 		
 		return db::getInstance()->Select(
             "INSERT INTO basket (id_good, user) VALUES ('$id', '$session')");
+	}
+	
+	public static function selectCount($id, $session){ //Проверяем не был ли уже добавлен тот же товар (подсчёт кол-ва)
+		
+		return db::getInstance()->Select(
+            "SELECT * FROM basket WHERE `user` = '$session' AND `id_good` = $id AND active=1");
+	}
+	
+	public static function setCount($id, $session){ //Если товар уже есть, то добавляем count + 1
+		header("location: /");
+		return db::getInstance()->Select(
+            "UPDATE `basket` SET `count`= `count`+1 WHERE id_good={$id} AND active=1 AND user='{$session}'");
 	}
 	
     public static function deleteBasket($idx){ //Удалить товары из корзины
@@ -35,10 +39,11 @@ class Basket extends Model{
             "SELECT * FROM basket INNER JOIN catalog ON basket.id_good = catalog.id WHERE `user` = '$session' ORDER BY pubdate DESC");
     }
 	
-	public static function getCount(){ //Выводит сумму и количество товаров в корзине
+	
+	public static function getCount($session = ''){ //Выводит сумму и количество товаров в корзине
 		
 		return db::getInstance()->Select(
-		"SELECT SUM( `price` ) as amount,COUNT( `idx` ) as count FROM basket INNER JOIN catalog ON basket.id_good = catalog.id");
+		"SELECT SUM( `price`*`count` ) as amount,SUM( `count` ) as count FROM basket INNER JOIN catalog ON basket.id_good = catalog.id WHERE `user` = '$session'");
 	}
 	
 	public static function checkOrder($name, $tel, $address, $session){ //Отправляет заказы в админ панель
@@ -48,7 +53,7 @@ class Basket extends Model{
 	}
 	
 	public static function succesBasket(){
-		unset($_SESSION);
+		session_regenerate_id();
 		header("location: /");
 	}
 	

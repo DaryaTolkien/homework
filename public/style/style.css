@@ -64,12 +64,6 @@ header .basket{
 	color: #b672ff;
 }
 
-/*Хеадер для админки*/
-.admin-header{
-	padding: 20px;
-	margin: auto;
-}
-
 /*Страница главная (каталог)*/
 
 .content{
@@ -134,14 +128,10 @@ header .basket{
 
 /*Страница одного товара с подробностями*/
 
-.catalog-good{
-	display: flex;
-	flex-direction: row;
-}
-
 .content-good{
 	display: flex;
-	flex-direction: row;
+	flex-direction:row;
+	
 }
 
 .product-good{
@@ -149,21 +139,76 @@ header .basket{
 	padding: 20px;
 	margin: 25px;
 	border: 1px solid darkgray;
+	display: flex;
+	flex-direction:column;
+	justify-content: center;
+	align-content: center;
+}
+
+.book-title-good{
+	font-size: 29px;
+	font-weight: 600;
+}
+
+.catalog_image_description{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	flex-wrap: wrap;
+	align-content: center;
 }
 
 .catalog-image-good{
 	width: 300px;
 	height: 400px;
-	align-self: flex-start;
+	margin: 20px;
 	display: inline-block;
+	float: left;
 }
+.desription-book{
+	margin: 15px;
+	display: inline-block;
+	float: right;
+	width: 50%;
+	text-align: justify;
+	align-self: center;
+}
+
 
 .book-title-good{
 	margin: 20px;
 }
 
-.desription-book{
-	
+.price-book{
+	display: block;
+	font-size: 28px;
+	font-weight: 700;
+}
+
+.catalog_buy-button{
+	display: inline-block;
+	border: none;
+	background-color: #f5c6ff;
+	padding: 10px;
+	margin: auto;
+	width: 80px;
+	text-decoration: none;
+	color: #545454;
+	transition-property: all;
+	transition-duration: 0.4s;
+}
+
+
+.catalog_buy-button:hover{
+	background-color: #ffc6c6;
+}
+
+.line{
+	width: 70%;
+	height: 1px;
+	background: linear-gradient(to left, pink, orange);
+	margin: 15px;
+    align-self: center;
 }
 
 /*Страница корзины*/
@@ -277,7 +322,35 @@ footer{
 	background-color: #ffc6c6;
 }
 
+/*Страница администратора */
 
+.admin_header{
+	background: linear-gradient(to left, #dbf7ff, #ffe2f7);
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-content: center;
+	padding-top: 20px;
+}
+.admin-header{
+	margin: 20px;
+	font-size: 30px;
+}
+
+.button_admin_loggout{
+	text-decoration: none;
+	margin: 20px;
+	align-self: flex-end;
+}
+
+.execute_admin{
+	color: blueviolet;
+}
+.execute_admin:hover{
+	transition-property: all;
+	transition-duration: 0.4s;
+	color: hotpink;
+}
 
 
 

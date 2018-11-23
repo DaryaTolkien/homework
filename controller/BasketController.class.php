@@ -9,12 +9,22 @@ class BasketController extends Controller{
     }
 	
 	public $view = 'basket';
-	
+
 	public function index($data){
 		
-		if(isset($_POST['getgood'])){ //Заносим значения в корзину
-			$baskets = Basket::setBasket($_POST['id'], session_id());
+		if(isset($_POST['getgood'])){ //Заносим значения в корзину с главной страницы
+			if(Basket::selectCount($_POST['id'], session_id())){
+				Basket::setCount($_POST['id'], session_id());
+			} else {
+			        $baskets = Basket::setBasket($_POST['id'], session_id());
+				}
+		} 
+		
+		if(isset($_GET['getgood'])){  //Заносим значения в корзину со ссылки с подробным описанием товара
+			
+			$baskets = Basket::setBasket($_GET['getgood'], session_id());
 		}
+		
 		
 		if(isset($_GET['del'])){ //Удаляем книги из корзины
 			$delete = Basket::deleteBasket($_GET['del']);
@@ -31,7 +41,7 @@ class BasketController extends Controller{
 			Basket::succesBasket();
 		}
 		
-		$count = Basket::getCount(); 
+		$count = Basket::getCount(session_id()); 
         $basket = Basket::getBasket(session_id());
         return ['basket' => $basket, 'count' => $count];
 	}

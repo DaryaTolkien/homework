@@ -16,7 +16,6 @@ class Catalog extends Model {
     }
 	
 	public static function SelectAuhtor($id){
-		//header('Content-Type: application/json');
         return db::getInstance()->Select(
             "SELECT * FROM catalog INNER JOIN catalog_author ON catalog.auhtor = catalog_author.id_auhtor WHERE id_auhtor = $id");
     }

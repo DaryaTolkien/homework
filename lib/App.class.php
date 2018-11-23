@@ -42,8 +42,8 @@ $_GET['page'] = 'Index';
                 'categories' => Category::getCategories(0),
 				'catalogs' => Catalog::getCatalog(),
 				'basket' => Basket::getBasket(session_id()),
-				'count' => Basket::getCount(), //функция подсчёта стоимости корзины, выводящаяся на всех страницах
-				'admin' => Admin::active()
+				'count' => Basket::getCount(session_id()), //функция подсчёта стоимости корзины, выводящаяся на всех страницах
+				'admin' => Admin::active(1)
             ];
 
             $view = $controller->view . '/' . $methodName . '.html';

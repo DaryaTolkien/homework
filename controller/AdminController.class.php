@@ -15,17 +15,14 @@ class AdminController extends Controller{
 			     header("location: /");
 		 }
 		
-		if(isset($_POST['del'])){
-			$idx = $_POST['idx'];
-		    $id_good = $_POST['id_good'];
-		    $name = $_POST['name'];
-		    $address = $_POST['address'];
-		    $tel = $_POST['tel'];
-			Admin::tranzaction($idx, $id_good, $name, $address, $tel);
+		if(isset($_GET['archiv'])){
+			$idx = $_GET['archiv'];
+			Admin::archiv($idx);
 		}
 	
-		$active = Admin::active();
-        return ['active' => $active];
+		$active = Admin::active(1);
+		$archiv = Admin::active(2);
+        return ['active' => $active, 'archiv' => $archiv];
 	}
 	
 }
