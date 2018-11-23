@@ -19,7 +19,7 @@
 				
                 <a href="/catalog/?id={{ catalog.id }}" class="menu-link">
 				  <div class="book-title" id="name">{{ catalog.title }}</div>
-				  <img src="/images/{{ catalog.image }}" class="catalog-image" id="img">
+				  <img src="/images/{{ catalog.image }}" class="catalog-image">
 			 <div class="price-book" id="price">{{ catalog.price }} &#8381;</div>
 				</a>
 		
@@ -50,8 +50,9 @@ function f(id_auhtor){
 			//$("#x").html(obj[0].description);
             $.each(obj, function(key,value) {
 			$('#x').append('<li>' +value.title + '</li>');
-		     //console.log(value.title);
-			//$("#x").html(value.id_auhtor);
+			$('#x').append('<li><a href="catalog/?id=' +value.id + '"class="menu-link">ff</a></li>');
+			$('#x').append('<li><img src="/images/' +value.image + '" class="catalog-image"></li>');
+		    $('#x').append('<li>' +value.price + '</li>');
              }); 
 	}
 	});
