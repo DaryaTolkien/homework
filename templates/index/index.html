@@ -8,7 +8,9 @@
 {% endfor %}
     </select>
 	
-<div id='x'></div>
+<ul id='x'>
+	
+</ul>
 	
 <div class="catalog">
 {% for catalog in catalogs %}
@@ -38,15 +40,19 @@ function f(id_auhtor){
 		type: "GET",
 		url: "/",
 		data: {id_auhtor},
-		dataType: 'json', 
+		//dataType: 'json', 
+		//contentType: 'application/json',
 		error: function (req, text, error) { // отслеживание ошибок во время выполнения ajax-запроса
-            alert('Хьюстон, У нас проблемы! ' + text + ' | ' + error);
+            alert('Ошибочка! ' + text + ' : ' + error);
         },
 	    success: function (response) {
-			$("#x").html(response);
-			//var obj = jQuery.parseJSON(response);
-			
-          //$('#x').attr('value', result.id_product);
+			var obj = jQuery.parseJSON(response);
+			//$("#x").html(obj[0].description);
+            $.each(obj, function(key,value) {
+			$('#x').append('<li>' +value.title + '</li>');
+		     //console.log(value.title);
+			//$("#x").html(value.id_auhtor);
+             }); 
 	}
 	});
    }

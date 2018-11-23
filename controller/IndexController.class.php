@@ -17,9 +17,9 @@ class IndexController extends Controller{
 	if($_GET['id_auhtor']){
 		$id = (int)($_GET['id_auhtor']);
 		$select_ajax = Catalog::SelectAuhtor($id);
-		$json['catalog'] = $select_ajax;
-		//header('Content-Type: application/json');
-		echo json_encode($json);
+		//$json['catalog'] = $select_ajax;
+		//echo json_encode($select_ajax);
+		exit(json_encode($select_ajax));
 	
 	} else {
 		
