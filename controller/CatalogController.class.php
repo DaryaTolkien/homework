@@ -2,6 +2,11 @@
 
 class CatalogController extends Controller
 {
+		function __construct()
+    {
+        parent::__construct();
+        $this->title .= ' | Каталог';
+    }
 
     public $view = 'catalogs';
 

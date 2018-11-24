@@ -8,21 +8,18 @@
 {% endfor %}
     </select>
 <div id="x" class="catalog"></div>
+	
 <div class="catalog">
 {% for catalog in catalogs %}
-            <div class="product">
+       <div class="product">
 				
                 <a href="/catalog/?id={{ catalog.id }}" class="menu-link" id="id">
-				  <div class="book-title" id="name">{{ catalog.title }}</div>
-				  <img src="/images/{{ catalog.image }}" class="catalog-image" id="image">
-			 <div class="price-book" id="price">{{ catalog.price }} &#8381;</div>
+				    <div class="book-title" id="name">{{ catalog.title }}</div>
+				    <img src="/images/{{ catalog.image }}" class="catalog-image" id="image">
+			        <div class="price-book" id="price">{{ catalog.price }} &#8381;</div>
 				</a>
-
-		
-				<form action="/basket/"  method='post'>
-				<input type="submit" value="add" class="buy-button" name="getgood">
-				<input type="hidden" name="id" value="{{ catalog.id }}">
-				</form>
+		       <a href="" class="catalog_buy-button" onclick="addBasket({{ catalog.id }})">add</a>
+		       <!-- <a href="/basket/?getgood={{ catalog.id }}" class="catalog_buy-button" onclick="addBasket({{ catalog.id }})">add</a>  -->
 		
        </div>
 {% endfor %}
@@ -30,35 +27,7 @@
 </div>
 {% include 'footer.html' %}
  
-<script type="text/javascript" src="/js/jquery.js"></script>
-<script>
-function f(id_auhtor){
-	$.ajax({
-		type: "GET",
-		url: "/",
-		data: {id_auhtor},
-		//dataType: 'json', 
-		//contentType: 'application/json',
-		error: function (req, text, error) { // отслеживание ошибок во время выполнения ajax-запроса
-            alert('Ошибочка! ' + text + ' : ' + error);
-        },
-	    success: function (response) {
-			var obj = jQuery.parseJSON(response);
-			var table = '';
-            $.each(obj, function(key,value) {
-            table += '<div class="product">';
-			table += '<a href="catalog/?id=' +value.id + '"class="menu-link">';
-			table += '<div>' +value.title + '</div>';
-			table += '<img src="/images/' +value.image + '" class="catalog-image">';
-			table += '<div class="price-book" id="price">' +value.price + ' &#8381;</div></a>';
-			table += '<a href="/basket/?getgood=' +value.id + '" class="catalog_buy-button">add</a></div>';
-			$('#x').empty();
-			$('#x').append(table);
-             });
-	}
-	});
-   }
-</script>
+
 
 
 
