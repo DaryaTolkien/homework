@@ -12,12 +12,18 @@ class BasketController extends Controller{
 
 	public function index($data){
 		
-		if(isset($_GET['add_id'])){  //Заносим значения в корзину 
-			if(Basket::selectCount($_GET['add_id'], session_id())){ //Проверяем, на кол-во товара в коризне
-				Basket::setCount($_GET['add_id'], session_id()); //Если есть такой же товар, то count + 1
+		if($_POST['add_id']){  //Заносим значения в корзину 
+			if(Basket::selectCount($_POST['add_id'], session_id())){ //Проверяем, на кол-во товара в коризне
+				Basket::setCount($_POST['add_id'], session_id()); //Если есть такой же товар, то count + 1
+				$json_add_count = Basket::getCount(session_id());
+				exit(json_encode($json_add_count));
 			} else {
-			        $baskets = Basket::setBasket($_GET['add_id'], session_id());
+			       Basket::setBasket($_POST['add_id'], session_id());
+				   $json_add = Basket::getCount(session_id());
+				   exit(json_encode($json_add));
 				}
+	   } else {
+			$count = Basket::getCount(session_id()); 
 		}
 		
 		
@@ -36,7 +42,6 @@ class BasketController extends Controller{
 			Basket::succesBasket();
 		}
 		
-		$count = Basket::getCount(session_id()); 
         $basket = Basket::getBasket(session_id());
         return ['basket' => $basket, 'count' => $count];
 	}

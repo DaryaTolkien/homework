@@ -6,7 +6,7 @@ class Basket extends Model{
 	
 	public static function setBasket($id, $session){ //Добавим товары в корзину
 		
-		header("location: /");
+		//header("location: /");
 		
 		return db::getInstance()->Select(
             "INSERT INTO basket (id_good, user) VALUES ('$id', '$session')");
@@ -19,7 +19,7 @@ class Basket extends Model{
 	}
 	
 	public static function setCount($id, $session){ //Если товар уже есть, то добавляем count + 1
-		header("location: /");
+		//header("location: /");
 		return db::getInstance()->Select(
             "UPDATE `basket` SET `count`= `count`+1 WHERE id_good={$id} AND active=1 AND user='{$session}'");
 	}
