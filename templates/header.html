@@ -17,9 +17,17 @@
             {% endfor %}
         </ul>
 			{% for counts in count %}
-			<div class="basket"><span class="basket-span"><a href="/basket/" class="menu-link">&#8381; : {{ counts.amount }}</a></span></div>
+		     <div class="basket"><span class="basket-span"><a href="" class="menu-link" id="amount_header">&#8381; : {{ counts.amount }}</a></span></div>
 			{% endfor %}
          </header>
-		 
+		
+		 	<div id="overlay"></div>
+            <div id="modal_form">
+            <div id="modal_close">x</div>
+				<div>Want to go to cart?</div>
+				{% for counts in count %}
+            <p>You ordered <span class="span_basket">{{ counts.count }}</span> items. Worth <span class="span_basket">{{ counts.amount }} &#8381;</span></p>
+				{% endfor %}
+             </div>
 
 

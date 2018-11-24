@@ -10,7 +10,7 @@
 				</div>
 				<div class="line"></div>
 				<div class="price-book">{{ good.price }} &#8381;</div>
-				<a href="/basket/?getgood={{ good.id }}" class="catalog_buy-button">add</a>
+				 <a href="" class="catalog_buy-button" onclick="addBasket({{ good.id }})" id="a">add</a>
             </div>
 	{% endfor %}
 </div>

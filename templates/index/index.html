@@ -18,8 +18,7 @@
 				    <img src="/images/{{ catalog.image }}" class="catalog-image" id="image">
 			        <div class="price-book" id="price">{{ catalog.price }} &#8381;</div>
 				</a>
-		       <a href="" class="catalog_buy-button" onclick="addBasket({{ catalog.id }})">add</a>
-		       <!-- <a href="/basket/?getgood={{ catalog.id }}" class="catalog_buy-button" onclick="addBasket({{ catalog.id }})">add</a>  -->
+		       <a href="" class="catalog_buy-button" onclick="addBasket({{ catalog.id }})" id="a">add</a>
 		
        </div>
 {% endfor %}
@@ -27,7 +26,7 @@
 </div>
 {% include 'footer.html' %}
  
-
+ 
 
 
 
