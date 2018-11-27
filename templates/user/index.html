@@ -1,0 +1,23 @@
+  {% for value in content_data.login %}
+
+<span style="margin: 30px;">HELLO! <span style="font-weight: 600;">{{ value.login }}</span></span>
+<div class="login_user">
+	<div class="login_user_block">
+        <div style="display: block; margin: 25px;">Your name: {{ value.name }}</div>
+        <div style="display: block; margin: 25px;">Your phone: {{ value.tel }}</div>
+	    <div style="display: block; margin: 25px;">Your adres: {{ value.adres }}</div>
+	</div>
+    <div>
+		<img src="/images/users/{{ value.img }}" style="width: 250px; height: 350px; margin: 25px;">
+		<form action="" enctype="multipart/form-data">
+             <input id="imgfile" name="imgfile" type="file">
+			 <input id="idphoto" type="hidden" value="{{ value.id }}" >
+             <input class="sbutton" value="Загрузить" type="submit" onchange=addPhoto(this.input) id="input_img">
+         </form>
+	 </div>
+	
+</div>
+   {% endfor %}
+
+
+<a href="/login/?loggout=exit" class="button-success">Loggout</a>

@@ -19,7 +19,7 @@ class LoginController extends Controller{
 		 }
 		 if(isset($_SESSION['session_login'])){ //Если уже вошел, то генерируем личный аккаунт
 			 $this->log = 'yes';
-			 $this->action = $_SESSION['session_login'];
+			 $this->action = Login::isUser($_SESSION['session_login'], $_SESSION['session_password']);
 		 }
 		 
         if(isset($_POST['log'])){ // Проверка на логин или пароль, админ или просто юзер
@@ -37,7 +37,8 @@ class LoginController extends Controller{
 			} elseif(Login::isUser($name, $pass) == true){ //Если логин и пароль юзера, то заходим в личный кабинет
 				$this->log = 'yes';
 				$_SESSION['session_login'] = $name;
-				$this->action = $name;
+				$_SESSION['session_password'] = $pass;		
+				$this->action = Login::isUser($_SESSION['session_login'], $_SESSION['session_password']);
 			} else { 
 				$this->action = "Your password and email do not match. Please try again ";
 			}
@@ -56,7 +57,8 @@ class LoginController extends Controller{
 			 
 			 if(Login::setUser($login, $name, $password) == false){
 				 $_SESSION['session_login'] = $name;
-				 $this->action = $_SESSION['session_login'];
+				 $_SESSION['session_password'] = $password;
+				 $this->action = Login::isUser($_SESSION['session_login'], $_SESSION['session_password']);
 				 $this->log = 'yes';
 			 } else {
 				 $this->action = "herna!";
@@ -67,7 +69,7 @@ class LoginController extends Controller{
 			     unset($_SESSION['session_login']);
 			     header("location: /login/");
 		 }
-		 
+		 //var_dump($this->action);
         return ['login' => $this->action, 'status' => $this->log];
     }
 }

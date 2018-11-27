@@ -8,6 +8,7 @@
 	<link href="/style/style.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Quicksand:300" rel="stylesheet">
     <body>
+		
 		<header>
         <ul>
             {% for category in categories %}
@@ -21,13 +22,16 @@
 			{% endfor %}
          </header>
 		
-		 	<div id="overlay"></div>
+		 	<canvas id="canvas" class="overlay"></canvas>
             <div id="modal_form">
-            <div id="modal_close">x</div>
-				<div>Want to go to cart?</div>
-				{% for counts in count %}
-            <p>You ordered <span class="span_basket">{{ counts.count }}</span> items. Worth <span class="span_basket">{{ counts.amount }} &#8381;</span></p>
-				{% endfor %}
+              <div id="modal_close">x</div>
+				 <div>Want to go to basket?</div>
+				   {% for counts in count %}
+                          <p>You ordered <span class="span_basket">{{ counts.count }}</span> items.<br> Worth :<span class="span_basket">{{ counts.amount }}</span>&#8381;</p>
+				   {% endfor %}
+				<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+			        <a href="/basket/" class="basket_a_want_yes basket_a_want">Yes, I want to order</a><a href="/" class="basket_a_want">No, I want to continue</a>
+				</div>
              </div>
 
 

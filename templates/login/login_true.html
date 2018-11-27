@@ -1,4 +1,22 @@
-<span style="margin: 30px;">HELLO! {{ content_data.login }}</span>
+ <!-- {% for value in content_data.login %}
 
-<div>This is your personal account!</div>
-<a href="/login/?loggout=exit" class="button-success">Loggout</a>
+<span style="margin: 30px;">HELLO! <span style="font-weight: 600;">{{ value.login }}</span></span>
+<div class="login_user">
+	<div class="login_user_block">
+        <div style="display: block; margin: 25px;">Your name: {{ value.name }}</div>
+        <div style="display: block; margin: 25px;">Your phone: {{ value.tel }}</div>
+	    <div style="display: block; margin: 25px;">Your adres: {{ value.adres }}</div>
+	</div>
+    <div>
+		<img src="/images/users/{{ value.img }}.jpg" style="width: 250px; height: 350px; margin: 25px;">
+		<form method="post" action="" enctype="multipart/form-data">
+             <input id="img_login" name="imgfile" type="file">
+             <input class="sbutton" value="Запилить" type="submit">
+         </form>
+	 </div>
+	
+</div>
+   {% endfor %}
+
+
+<a href="/login/?loggout=exit" class="button-success">Loggout</a>  -->
