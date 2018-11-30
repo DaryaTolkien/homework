@@ -1,0 +1,13 @@
+{% include 'header.html' %}
+
+<div class="content">
+
+{% if content_data.status  == 'no' %}
+
+{% include '/login/login.html' %}
+
+{% endif %} 
+
+</div>
+
+{% include 'footer.html' %}

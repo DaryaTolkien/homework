@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{ title }}</title>
+    </head>
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script type="text/javascript" src="/js/my.js"></script>
+	<link href="/style/style.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Quicksand:300" rel="stylesheet">
+    <body>
+		
+		<header>
+        <ul>
+            {% for category in categories %}
+            <li class="menu-li">
+                <a href="{{ category.url }}" link="{{ category.id }}" class="menu-link">{{ category.name }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+			{% for counts in count %}
+		     <div class="basket"><span class="basket-span"><a href="" class="menu-link" id="amount_header">&#8381; : {{ counts.amount }}</a></span></div>
+			{% endfor %}
+         </header>
+		
+		 	<canvas id="canvas" class="overlay"></canvas>
+            <div id="modal_form">
+              <div id="modal_close">x</div>
+				 <div>Want to go to basket?</div>
+				   {% for counts in count %}
+                          <p>You ordered <span class="span_basket">{{ counts.count }}</span> items.<br> Worth :<span class="span_basket">{{ counts.amount }}</span>&#8381;</p>
+				   {% endfor %}
+				<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+			        <a href="/basket/" class="basket_a_want_yes basket_a_want">Yes, I want to order</a><a href="/" class="basket_a_want">No, I want to continue</a>
+				</div>
+             </div>
+
+

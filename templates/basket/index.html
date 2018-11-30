@@ -1,0 +1,43 @@
+{% include 'header.html' %}
+
+<div class="content">
+<span style="margin: 20px;">BASKET</span>
+	
+	
+	<form action="/basket/" class="form-basket" method="post">
+	 <table border="1" class="tablebas">
+   <tr>
+    <th>title</th>
+    <th>price</th>
+	<th>count</th>
+   </tr>
+		 
+	{% for good in basket %}
+<tr><td>{{ good.title }}</td><td>{{ good.price }}</td><td>{{ good.count }}</td><td><a href="/basket/?del={{ good.idx }} ">delete</a></td></tr>
+		 <input type="hidden" name="idx" value="{{ good.id_good }}">
+	{% endfor %}	 
+	
+	{% for counts in count %}
+<tr style="color: #dc42ff; font-weight: 600;"><td>Total count: {{ counts.count }}</td><td>Total price: {{ counts.amount }} &#8381;</td></tr>
+	{% endfor %}
+	</table>
+		
+	{% if sess is defined %}
+        <input type="text" placeholder="Your name" class="checkout" name="name" value="{{ sess.session_name }}" required>
+		<input type="tel" placeholder="Your phone" class="checkout" name="tel" value="{{ sess.session_tel }}" required>
+		<input type="text" placeholder="Your address" class="checkout" name="address" value="{{ sess.session_adres }}" required>
+		<input type="submit" value="Checkout" class="checkout checkout-button" name="check">
+    {% else %}
+		<input type="text" placeholder="Your name" class="checkout" name="name" required>
+		<input type="tel" placeholder="Your phone" class="checkout" name="tel" required>
+		<input type="text" placeholder="Your address" class="checkout" name="address" required>
+		<input type="submit" value="Checkout" class="checkout checkout-button" name="check">
+    {% endif %}
+		
+		
+	</form>
+	
+	
+</div>
+
+{% include 'footer.html' %}

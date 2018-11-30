@@ -1,0 +1,469 @@
+body, html{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 0px;
+	margin: 0px;
+	font-family: 'Quicksand', sans-serif;
+	font-size: 24px;
+}
+
+header{
+	background: linear-gradient(to left, #dbf7ff, #ffe2f7);
+	display: flex;
+	flex-direction: row;
+	position: relative;
+	padding-top: 20px;
+}
+
+.menu-li{
+	list-style: none;
+	display: inline-block;
+	padding: 20px;
+	position: relative;
+}
+
+.menu-link{
+	text-decoration: none;
+	color: #545454;
+}
+
+.menu-li a:after {
+    display: block;
+    content: "";
+    background: linear-gradient(to left, red, #ffc700);
+    height: 1px;
+    width: 0%;
+	left: 50%;
+    position:absolute;
+    -webkit-transition: width .3s ease-in-out;
+    -moz--transition: width .3s ease-in-out;
+    transition: width .3s ease-in-out;
+    -webkit-transform:translateX(-50%);
+    -moz-transform:translateX(-50%);
+    transform:translateX(-50%);
+}
+.menu-li a:hover:after,
+.menu-li a:focus:after {
+    width: 100%;
+}
+
+header .basket{
+	position: fixed;
+    width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	top: 0;
+	background-color: rgba(255,	239, 213, 1);
+	padding: 5px;
+}
+
+.basket-span a{
+	margin-right: 200px;
+	color: #b672ff;
+}
+
+/*Блок корзины модального окна*/
+#modal_form {
+	width: 50%; 
+	/*height: 30%; /* Рaзмеры дoлжны быть фиксирoвaны */
+	background: #fff;
+	position: fixed; /* чтoбы oкнo былo в видимoй зoне в любoм месте */
+	top: 45%; /* oтступaем сверху 45%, oстaльные 5% пoдвинет скрипт */
+	left: 25%; /* пoлoвинa экрaнa слевa */
+	margin-top: -150px;
+	/*margin-left: -150px; /* тут вся мaгия центрoвки css, oтступaем влевo и вверх минус пoлoвину ширины и высoты сooтветственнo =) */
+	display: none; /* в oбычнoм сoстoянии oкнa не дoлжнo быть */
+	opacity: 0; /* пoлнoстью прoзрaчнo для aнимирoвaния */
+	z-index: 5; /* oкнo дoлжнo быть нaибoлее бoльшем слoе */
+	padding: 20px 10px;
+	text-align: center;
+}
+/* Кнoпкa зaкрыть для тех ктo в тaнке) */
+#modal_form #modal_close {
+	width: 21px;
+	height: 21px;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	cursor: pointer;
+	display: block;
+}
+/* Пoдлoжкa */
+.overlay {
+	z-index:3; /* пoдлoжкa дoлжнa быть выше слoев элементoв сaйтa, нo ниже слoя мoдaльнoгo oкнa */
+	position:fixed; /* всегдa перекрывaет весь сaйт */
+	background: rgba(0, 0, 0, 0.8);
+	width:100%; 
+	height:100%; /* рaзмерoм вo весь экрaн */
+	top:0; /* сверху и слевa 0, oбязaтельные свoйствa! */
+	left:0;
+	cursor:pointer;
+	display:none; /* в oбычнoм сoстoянии её нет) */
+}
+
+.span_basket{
+	padding: 10px;
+	display: inline-block;
+	font-size: 30px;
+	color: #56c8ce;
+}
+
+.basket_a_want{
+	text-decoration: none;
+	padding: 15px;
+	border-radius: 25px;
+	border: 1px solid #e0e0e0;
+	color: darkgray;
+	margin: 10px;
+}
+.basket_a_want_yes{
+	border: 1px solid #56c8ce; 
+	color: #56c8ce;
+	transition-property: all;
+	transition-duration: 0.4s;
+}
+.basket_a_want_yes:hover{
+	background-color: #56c8ce;
+	color: white;
+}
+
+/*Страница главная (каталог)*/
+
+.content{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items:center;
+}
+
+.catalog{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.select_auhtor{
+	padding: 10px;
+	align-self: flex-start;
+    margin-left: 10%;
+}
+
+.product{
+	text-align: center;
+	padding: 20px;
+	margin: 25px;
+	border: 1px solid darkgray;
+}
+
+.catalog-image{
+	width: 250px;
+	height: 300px;
+}
+
+.book-title{
+	display: block;
+	margin: 10px;
+}
+
+.buy-button{
+	border: none;
+	background-color: #f5c6ff;
+	padding: 10px;
+	width: 80px;
+	text-decoration: none;
+	color: #545454;
+	transition-property: all;
+	transition-duration: 0.4s;
+}
+
+.buy-button:hover{
+	background-color: #ffc6c6;
+}
+
+
+.price-book{
+	font-size: 27px;
+	margin: 10px;
+}
+
+
+/*Страница одного товара с подробностями*/
+
+.content-good{
+	display: flex;
+	flex-direction:row;
+	
+}
+
+.product-good{
+	text-align: center;
+	padding: 20px;
+	margin: 25px;
+	border: 1px solid darkgray;
+	display: flex;
+	flex-direction:column;
+	justify-content: center;
+	align-content: center;
+}
+
+.book-title-good{
+	font-size: 29px;
+	font-weight: 600;
+}
+
+.catalog_image_description{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	flex-wrap: wrap;
+	align-content: center;
+}
+
+.catalog-image-good{
+	width: 300px;
+	height: 400px;
+	margin: 20px;
+	display: inline-block;
+	float: left;
+}
+.desription-book{
+	margin: 15px;
+	display: inline-block;
+	float: right;
+	width: 50%;
+	text-align: justify;
+	align-self: center;
+}
+
+
+.book-title-good{
+	margin: 20px;
+}
+
+.price-book{
+	display: block;
+	font-size: 28px;
+	font-weight: 700;
+}
+
+.catalog_buy-button{
+	display: inline-block;
+	border: none;
+	background-color: #f5c6ff;
+	padding: 10px;
+	margin: auto;
+	width: 80px;
+	text-decoration: none;
+	color: #545454;
+	transition-property: all;
+	transition-duration: 0.4s;
+}
+
+
+.catalog_buy-button:hover{
+	background-color: #ffc6c6;
+}
+
+.line{
+	width: 70%;
+	height: 1px;
+	background: linear-gradient(to left, pink, orange);
+	margin: 15px;
+    align-self: center;
+}
+
+/*Страница корзины*/
+
+.form-basket{
+	text-align: center;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-self: center;
+}
+
+.tablebas{
+	border-collapse: collapse; 
+	width: 60%;
+	text-align: center;
+	align-self: center;
+	margin: 20px;
+	font-size: 22px;
+}
+
+.tablebas td{
+	padding: 10px;
+}
+
+.tablebas th{
+	padding: 10px;
+	font-weight: 600;
+	font-size: 27px;
+}
+
+.tablebas a{
+	text-decoration: none;
+}
+
+
+.checkout{
+	width: 30%;
+	text-align: center;
+	display: inline-block;
+	align-self: center;
+	padding: 10px;
+	margin: 5px;
+    font-family: 'Quicksand', sans-serif;
+	font-size: 20px;
+}
+.checkout-button{
+	width: 150px;
+	background: linear-gradient(to left, #f5c6ff, #ffe2f7);
+	border: none;
+	margin-bottom: 30px;
+}
+
+
+/*Страница успеха корзины*/
+.button-success {
+	width: 150px;
+	background: linear-gradient(to left, #f5c6ff, #ffe2f7);
+	border: none;
+	margin-bottom: 30px;
+	margin-top: 20px;
+	padding: 15px;
+	text-align: center;
+	text-decoration: none;
+}
+
+
+/* Футер */
+
+footer{
+	background: linear-gradient(to left, #dbf7ff, #ffe2f7);
+	flex-direction: row;
+	padding-top: 20px;
+	height: 150px;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+/*Блок Логина и Авторизации*/
+
+
+.login-form{
+	border: 1px solid darkgray;
+	padding: 20px;
+	margin: 20px;
+	text-align: center;
+	font-family: 'Quicksand', sans-serif;
+}
+
+.login-form input{
+	padding: 10px;
+	margin: 10px 3px;
+	border: 1px solid lightgray;
+}
+
+.login-form input[type="submit"]{
+	display: inline-block;
+	margin-top: 20px;
+	padding: 10px 30px;
+	text-align: center;
+	background-color: #f5c6ff;
+	border: none;
+	transition-property: all;
+	transition-duration: 0.4s;
+}
+
+.login-form input[type="submit"]:hover{
+	background-color: #ffc6c6;
+}
+
+/*Страница администратора */
+
+.admin_header{
+	background: linear-gradient(to left, #dbf7ff, #ffe2f7);
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-content: center;
+	padding-top: 20px;
+}
+.admin-header{
+	margin: 20px;
+	font-size: 30px;
+}
+
+.button_admin_loggout{
+	text-decoration: none;
+	margin: 20px;
+	align-self: flex-end;
+}
+
+.execute_admin{
+	color: blueviolet;
+}
+.execute_admin:hover{
+	transition-property: all;
+	transition-duration: 0.4s;
+	color: hotpink;
+}
+
+
+/*Сттаница Пользователя*/
+
+.update_user{
+	margin-left: 15px;
+}
+
+.button_user_update{
+	background-image: url(../images/server/save.png);
+	background-color: transparent;
+	border: none;
+	margin-left: 10px;
+	width: 17px;
+	height: 17px;
+	cursor: pointer;
+}
+
+
+.login_user{
+	display: flex;
+	flex-direction: row-reverse;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-content: center;
+}
+
+.login_user_block{
+	display: flex;
+	flex-direction: column;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

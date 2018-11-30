@@ -1,0 +1,46 @@
+{% include 'admin_header.html' %}
+<div class="content">
+	
+	<span style="margin: 20px;">ORDERING</span>
+	
+	<span style="color: crimson;">active orders</span>
+	
+	 <table border="1" class="tablebas">
+   <tr>
+    <th>id_good</th>
+    <th>name</th>
+	<th>address</th>
+	<th>tel</th>
+	<th>count</th>
+	<th> </th>
+   </tr>
+		 
+	{% for activ in content_data.active %}
+<tr><td>{{ activ.id_good }}</td><td>{{ activ.name }}</td><td>{{ activ.address }}</td><td>{{ activ.tel }}</td><td>{{ activ.count }}</td><td><a href="/admin/?archiv={{ activ.idx }}" class="execute_admin">execute</a></td></tr>
+	{% endfor %}	 
+
+		 
+	</table>
+	 <div class="line" style="margin-top: 50px;"></div>
+	
+		<span style="color: crimson;">archiv orders</span>
+	<form action="/admin/" class="form-basket" method="post">
+	 <table border="1" class="tablebas">
+   <tr>
+    <th>id_good</th>
+    <th>name</th>
+	<th>address</th>
+	<th>tel</th>
+	<th>count</th>
+   </tr>
+		 
+	{% for ar in content_data.archiv %}
+<tr><td>{{ ar.id_good }}</td><td>{{ ar.name }}</td><td>{{ ar.address }}</td><td>{{ ar.tel }}</td><td>{{ ar.count }}</td></tr>
+	{% endfor %}	 
+	
+	</table>
+		
+	</form>
+	
+<div style="margin-bottom: 100px;"></div>
+</div>

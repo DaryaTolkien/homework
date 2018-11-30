@@ -1,0 +1,41 @@
+{% include 'header.html' %}
+
+<div class="content">
+<span style="margin: 30px;">BOOKS CATALOG</span>
+	<select class="select_auhtor" onchange=f(this.value)>
+{% for auhtors in content_data.get_auhtor %}
+    <option value="{{ auhtors.id_auhtor }}" class="option_auhtor"> {{ auhtors.surname }} </option>
+{% endfor %}
+    </select>
+<div id="x" class="catalog"></div>
+	
+<div class="catalog">
+{% for catalog in catalogs %}
+       <div class="product">
+				
+                <a href="/catalog/?id={{ catalog.id }}" class="menu-link" id="id">
+				    <div class="book-title" id="name">{{ catalog.title }}</div>
+				    <img src="/images/{{ catalog.image }}" class="catalog-image" id="image">
+			        <div class="price-book" id="price">{{ catalog.price }} &#8381;</div>
+				</a>
+		       <a href="" class="catalog_buy-button" onclick="addBasket({{ catalog.id }})" id="a">add</a>
+		
+       </div>
+{% endfor %}
+</div>
+</div>
+{% include 'footer.html' %}
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
