@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Ноя 13 2018 г., 20:00
+-- Время создания: Ноя 30 2018 г., 18:57
 -- Версия сервера: 5.6.38
 -- Версия PHP: 7.2.0
 
@@ -63,18 +63,39 @@ CREATE TABLE `archiv` (
 CREATE TABLE `basket` (
   `idx` int(11) NOT NULL,
   `id_good` int(11) NOT NULL,
-  `user` text COLLATE utf8_bin NOT NULL
+  `user` text COLLATE utf8_bin NOT NULL,
+  `count` int(11) NOT NULL DEFAULT '1',
+  `pubdate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `active` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Дамп данных таблицы `basket`
 --
 
-INSERT INTO `basket` (`idx`, `id_good`, `user`) VALUES
-(20, 7, 'r23ed4ge6rrcdvi8kk7ucs2ostsamu4j'),
-(22, 1, 'r23ed4ge6rrcdvi8kk7ucs2ostsamu4j'),
-(23, 9, 'r23ed4ge6rrcdvi8kk7ucs2ostsamu4j'),
-(24, 3, 'r23ed4ge6rrcdvi8kk7ucs2ostsamu4j');
+INSERT INTO `basket` (`idx`, `id_good`, `user`, `count`, `pubdate`, `active`) VALUES
+(47, 1, 'ei5iifvcv1eo733po38a27o8g8o4jekg', 1, '2018-11-21 13:43:48', 2),
+(48, 8, 'ei5iifvcv1eo733po38a27o8g8o4jekg', 1, '2018-11-21 13:43:49', 2),
+(49, 3, 'ei5iifvcv1eo733po38a27o8g8o4jekg', 4, '2018-11-21 13:43:50', 2),
+(50, 12, 'l77pkdcg56tb6k61vcgbeme1v5u5lf35', 4, '2018-11-21 17:53:14', 2),
+(52, 1, 'l77pkdcg56tb6k61vcgbeme1v5u5lf35', 1, '2018-11-21 17:56:44', 2),
+(55, 5, 'l77pkdcg56tb6k61vcgbeme1v5u5lf35', 1, '2018-11-21 18:14:31', 2),
+(56, 6, '845kuen2tv2qlu47rp5ioogim9ehpilm', 2, '2018-11-21 18:29:03', 2),
+(57, 2, '845kuen2tv2qlu47rp5ioogim9ehpilm', 1, '2018-11-21 18:29:06', 1),
+(58, 5, '845kuen2tv2qlu47rp5ioogim9ehpilm', 2, '2018-11-21 18:29:08', 1),
+(59, 12, '845kuen2tv2qlu47rp5ioogim9ehpilm', 1, '2018-11-21 18:29:11', 1),
+(60, 5, 'ncbagur5etod8ufcbhb5orn0em88he6v', 6, '2018-11-21 18:40:47', 2),
+(63, 1, 'ncbagur5etod8ufcbhb5orn0em88he6v', 3, '2018-11-23 17:02:25', 2),
+(70, 7, 'ncbagur5etod8ufcbhb5orn0em88he6v', 1, '2018-11-23 18:23:15', 2),
+(71, 8, 'ncbagur5etod8ufcbhb5orn0em88he6v', 1, '2018-11-23 18:25:10', 1),
+(72, 3, 'ncbagur5etod8ufcbhb5orn0em88he6v', 2, '2018-11-23 18:25:15', 1),
+(226, 1, '8vfvpa8rj6pp7dddiee38d5vlfvph8sq', 6, '2018-11-28 23:34:41', 1),
+(227, 5, '8vfvpa8rj6pp7dddiee38d5vlfvph8sq', 1, '2018-11-28 23:34:42', 1),
+(228, 6, '8vfvpa8rj6pp7dddiee38d5vlfvph8sq', 1, '2018-11-28 23:34:43', 1),
+(229, 5, '3fseccsq70j1osvlnvfvpvqh4e8f3ch2', 6, '2018-11-30 12:56:58', 1),
+(230, 1, '2k82vjsk4r4gmfr5ft5hs2nm18l6uujj', 1, '2018-11-30 18:22:24', 1),
+(231, 5, '2k82vjsk4r4gmfr5ft5hs2nm18l6uujj', 1, '2018-11-30 18:22:25', 1),
+(232, 6, '2k82vjsk4r4gmfr5ft5hs2nm18l6uujj', 1, '2018-11-30 18:22:25', 1);
 
 -- --------------------------------------------------------
 
@@ -85,9 +106,9 @@ INSERT INTO `basket` (`idx`, `id_good`, `user`) VALUES
 CREATE TABLE `catalog` (
   `id` int(11) NOT NULL,
   `title` varchar(255) COLLATE utf8_bin NOT NULL,
+  `auhtor` int(11) NOT NULL,
   `image` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `price` int(11) NOT NULL,
-  `pubdate` datetime DEFAULT CURRENT_TIMESTAMP,
   `description` text COLLATE utf8_bin NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -95,17 +116,40 @@ CREATE TABLE `catalog` (
 -- Дамп данных таблицы `catalog`
 --
 
-INSERT INTO `catalog` (`id`, `title`, `image`, `price`, `pubdate`, `description`) VALUES
-(1, 'White Guard', 'Belaya.jpg', 457, '2018-07-05 13:29:50', ' Drawing closely on Bulgakov\'s personal experiences of the horrors of civil war as a young doctor, The White Guard takes place in Kiev, 1918, a time of turmoil and suffocating uncertainty as the Bolsheviks, Socialists and Germans fight for control of the city. It tells the story of the Turbins, a once-wealthy Russian family, as they are forced to come to terms with revolution and a new regime.'),
-(2, 'Borodino', 'Borodino.jpg', 245, '2018-07-05 13:30:24', 'A poem by Russian poet Mikhail Lermontov which describes the Battle of Borodino, the turning point of the Napoleon\'s invasion of Russia. It was first published in 1837 in literary magazine Sovremennik on the occasion of the 25th anniversary of the battle. The poem is thought to be based on the narrations of one of the author\'s relatives, several of whom were veterans of the Patriotic War of 1812.'),
-(3, 'Idiot', 'Idiot.jpg', 235, '2018-07-05 13:30:41', 'The year is 1995, and email is new. Selin, the daughter of Turkish immigrants, arrives for her freshman year at Harvard. She signs up for classes in subjects she has never heard of, befriends her charismatic and worldly Serbian classmate, Svetlana, and, almost by accident, begins corresponding with Ivan, an older mathematics student from Hungary. Selin may have barely spoken to Ivan, but with each email they exchange, the act of writing seems to take on new and increasingly mysterious meanings.  At the end of the school year, Ivan goes to Budapest for the summer, and Selin heads to the Hungarian countryside, to teach English in a program run by one of Ivan\'s friends. On the way, she spends two weeks visiting Paris with Svetlana. Selin\'s summer in Europe does not resonate with anything she has previously heard about the typical experiences of American college students, or indeed of any other kinds of people. For Selin, this is a journey further inside herself: a coming to grips with the ineffable and exhilarating confusion of first love, and with the growing consciousness that she is doomed to become a writer'),
-(4, 'Igrok', 'Igrok.jpg', 497, '2018-07-05 13:31:27', 'This largely autobiographical novel, Dostoevsky was forced to write, not to lose all rights to his previous works after a major defeat in Baden-Baden. The hero of the novel, as the author himself, torn between the passion for the game and a passion for a woman. The cover photo of Fyodor Dostoevsky during his life in Baden-Baden.'),
-(5, 'Master and Margarita', 'Master.jpg', 645, '2018-11-10 22:54:46', 'The underground masterpiece of twentieth-century Russian fiction, this classic novel was written during Stalin’s regime and could not be published until many years after its author’s death.  When the devil arrives in 1930s Moscow, consorting with a retinue of odd associates—including a talking black cat, an assassin, and a beautiful naked witch—his antics wreak havoc among the literary elite of the world capital of atheism. Meanwhile, the Master, author of an unpublished novel about Jesus and Pontius Pilate, languishes in despair in a pyschiatric hospital, while his devoted lover, Margarita, decides to sell her soul to save him. As Bulgakov’s dazzlingly exuberant narrative weaves back and forth between Moscow and ancient Jerusalem, studded with scenes ranging from a giddy Satanic ball to the murder of Judas in Gethsemane, Margarita’s enduring love for the Master joins the strands of plot across space and time.'),
-(6, 'Morpheus', 'Morfei.jpg', 367, '2018-11-10 22:54:46', 'The whole story is a recollection of the doctor Bomhard about the year 1917. Most of the story Bomgard reads the diary of his late friend, doctor Polyakov, who became a morphinist.'),
-(7, 'Petersburg noel', 'Peterburg.jpg', 389, '2018-11-10 22:55:54', 'Petersburg stories-accepted in the philological literature conditional name of the collection of several stories written by N. V. Gogol, United by a common place of action-St. Petersburg 1830-1840-ies. Traditionally it includes the story \"Nevsky Prospekt\", \"Nose\", \"Portrait\", \"the Overcoat\", \"diary of a madman\", sometimes connected to them closely the content of the story \"the Pram\". The writer himself did not use such a term to refer to the cycle of his works devoted to the St. Petersburg theme. Works were written at different times, the story \"Nevsky prospect\" was established in the years 1833-1834, \"Portrait\" — in the years 1833-1834, both first published in 1835, in the collection \"Arabesque\" (represented in the permanent exhibition in the Office of the writer), \"diary of a madman\" written in 1834, also first published in the collection \"Arabesque\" under the heading \"Scraps from a diary of a madman\". The novel \" Nose \"was written in 1832-1833, and was first published in the magazine\" Contemporary\". Pushkin in 1836, after the magazine \"Moscow observer\" refused to print the story, calling it\"bad, vulgar and trivial.\" '),
-(8, 'Overcoat', 'Shinel.jpg', 456, '2018-11-10 22:55:54', 'One of the most acknowledged film interpretations of classic short story \"The Overcoat\" (1842) by Nikolai Gogol, describing a fate of a \"small person\".'),
-(9, 'Taras and Bulba', 'Taras.jpg', 408, '2018-11-10 22:56:28', '\"So you want to fight me? with your fist, eh?\" \"Any way.\" \"Well, let it be fisticuffs,\" said Taras Bulba, turning up his sleeves. \"I\'ll see what sort of a man you are with your fists.\" And father and son, in lieu of a pleasant greeting after long separation, began to deal each other heavy blows on ribs, back, and chest, now retreating and looking at each other, now attacking afresh.'),
-(10, 'Vii', 'Vii.jpg', 398, '2018-11-10 22:56:28', 'The proposed collection includes works in which the mystical beginning dominates; mysterious events keep the reader in suspense, revealing the veil of the other world.  The subjects of the works are very similar and are based on the unexpected intervention of supernatural dark forces in people\'s lives. And the fact that it is unclear what causes fear. Gogol draws stories in folklore, folk demonology: it is the night before Ivan Kupala, the lost soul, the enchanted place, the ancestral curse, the devil, expelled from hell – and processes in its unique manner, sometimes building on a small fairy tale full story.  For a wide range of readers.');
+INSERT INTO `catalog` (`id`, `title`, `auhtor`, `image`, `price`, `description`) VALUES
+(1, 'White Guard', 1, 'Belaya.jpg', 457, 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a,'),
+(2, 'Borodino', 2, 'Borodino.jpg', 245, 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a,'),
+(3, 'Idiot', 3, 'Idiot.jpg', 235, 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a,'),
+(4, 'Igrok', 3, 'Igrok.jpg', 497, 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a,'),
+(5, 'Master and Margarita', 1, 'Master.jpg', 645, 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a,'),
+(6, 'Morpheus', 1, 'Morfei.jpg', 367, 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a,'),
+(7, 'Petersburg noel', 4, 'Peterburg.jpg', 389, 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a,'),
+(8, 'Overcoat', 4, 'Shinel.jpg', 456, 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a,'),
+(9, 'Taras and Bulba', 4, 'Taras.jpg', 408, 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a,'),
+(10, 'Vii', 4, 'Vii.jpg', 398, 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a,'),
+(11, 'Hero of our time', 2, 'heroes_our.jpg', 648, 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a,'),
+(12, 'Mtsyri', 2, 'Mtsiri.jpg', 344, 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a,');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `catalog_author`
+--
+
+CREATE TABLE `catalog_author` (
+  `id_auhtor` int(11) NOT NULL,
+  `surname` varchar(23) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Дамп данных таблицы `catalog_author`
+--
+
+INSERT INTO `catalog_author` (`id_auhtor`, `surname`) VALUES
+(1, ' Bulgakov Mikhail'),
+(2, 'Lermontov Mikhail '),
+(3, 'Dostaevsky Feodor'),
+(4, 'Gogol Nikolay ');
 
 -- --------------------------------------------------------
 
@@ -139,6 +183,9 @@ CREATE TABLE `users` (
   `login` varchar(23) COLLATE utf8_bin NOT NULL,
   `password` varchar(232) COLLATE utf8_bin NOT NULL,
   `name` varchar(11) COLLATE utf8_bin NOT NULL,
+  `img` varchar(300) COLLATE utf8_bin DEFAULT NULL,
+  `tel` int(11) DEFAULT NULL,
+  `adres` varchar(30) COLLATE utf8_bin DEFAULT NULL,
   `session` varchar(33) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -146,8 +193,9 @@ CREATE TABLE `users` (
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `login`, `password`, `name`, `session`) VALUES
-(1, 'Daria', 'c20ad4d76fe97759aa27a0c99bff6710', 'Дарья', '');
+INSERT INTO `users` (`id`, `login`, `password`, `name`, `img`, `tel`, `adres`, `session`) VALUES
+(31, 'Test', 'c4ca4238a0b923820dcc509a6f75849b', 'test', '20181130-5640_20181130-3603_lR2OCOG9P4M.jpg', 2343243, 'Moscow', ''),
+(32, 'Miha', 'c0bc70725dd349bea4905542b94af350', 'Misha', '20181130-4006_IMG_9385.jpg', 6784894, 'Novosibirsk', '');
 
 -- --------------------------------------------------------
 
@@ -168,12 +216,20 @@ CREATE TABLE `users_shop` (
 --
 
 INSERT INTO `users_shop` (`id`, `name`, `address`, `tel`, `users`) VALUES
-(2, 'Игорь', 'Moscow', 2147483647, 'r23ed4ge6rrcdvi8kk7ucs2ostsamu4j'),
 (3, 'Pavel', 'Saints-Petersburg', 3467856, 'r23ed4ge6rrcdvi8kk7ucs2ostsamu4j'),
-(4, 'Дарья', 'Saints-Petersburg', 1234566, 'r23ed4ge6rrcdvi8kk7ucs2ostsamu4j'),
 (5, 'Vitalii', 'Perm', 2343243, 'r23ed4ge6rrcdvi8kk7ucs2ostsamu4j'),
 (6, 'Michael', 'Kazan', 5678909, 'r23ed4ge6rrcdvi8kk7ucs2ostsamu4j'),
-(7, 'Oleg', 'Kazan', 5675463, 'r23ed4ge6rrcdvi8kk7ucs2ostsamu4j');
+(7, 'Oleg', 'Kazan', 5675463, 'r23ed4ge6rrcdvi8kk7ucs2ostsamu4j'),
+(8, 'ivan', 'Saints-Petersburg', 56756556, 'r21er5ltbqqaj0uv3t0i3bjn5es3a45h'),
+(9, 'Rai', 'Kazan', 456456, 'r21er5ltbqqaj0uv3t0i3bjn5es3a45h'),
+(10, 'lolita', 'Moscow', 5478888, 'v79u03ah7lkm9aniah3m2f215m7huleq'),
+(11, 'Igor', 'Kazan', 4555655, 'ei5iifvcv1eo733po38a27o8g8o4jekg'),
+(12, 'Vitalyi', 'Saints-Petersburg', 456443335, 'l77pkdcg56tb6k61vcgbeme1v5u5lf35'),
+(13, 'Irina', 'Ekaterinburg', 34543638, '845kuen2tv2qlu47rp5ioogim9ehpilm'),
+(14, 'Slava', 'New-York', 4565464, 'ncbagur5etod8ufcbhb5orn0em88he6v'),
+(15, 'IgorPituh', 'Novosib', 65675757, '8vfvpa8rj6pp7dddiee38d5vlfvph8sq'),
+(16, 'test', 'Spb', 2343243, '3fseccsq70j1osvlnvfvpvqh4e8f3ch2'),
+(17, 'Lol', 'Ekaterinburg', 3245476, '2k82vjsk4r4gmfr5ft5hs2nm18l6uujj');
 
 --
 -- Индексы сохранённых таблиц
@@ -196,6 +252,12 @@ ALTER TABLE `basket`
 --
 ALTER TABLE `catalog`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `catalog_author`
+--
+ALTER TABLE `catalog_author`
+  ADD PRIMARY KEY (`id_auhtor`);
 
 --
 -- Индексы таблицы `menu`
@@ -229,13 +291,13 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT для таблицы `basket`
 --
 ALTER TABLE `basket`
-  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=238;
 
 --
 -- AUTO_INCREMENT для таблицы `catalog`
 --
 ALTER TABLE `catalog`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT для таблицы `menu`
@@ -247,13 +309,13 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT для таблицы `users_shop`
 --
 ALTER TABLE `users_shop`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
