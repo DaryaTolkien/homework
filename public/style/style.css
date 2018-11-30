@@ -420,6 +420,21 @@ footer{
 
 /*Сттаница Пользователя*/
 
+.update_user{
+	margin-left: 15px;
+}
+
+.button_user_update{
+	background-image: url(../images/server/save.png);
+	background-color: transparent;
+	border: none;
+	margin-left: 10px;
+	width: 17px;
+	height: 17px;
+	cursor: pointer;
+}
+
+
 .login_user{
 	display: flex;
 	flex-direction: row-reverse;

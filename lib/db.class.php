@@ -41,7 +41,7 @@ class db{
         $this->db = new PDO($connectString, $user, $password,
             [
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC // возвращать ассоциативные массивы
-               // PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION // возвращать Exception в случае ошибки
+                 //PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION // возвращать Exception в случае ошибки
             ]
         );
     }
@@ -59,28 +59,23 @@ class db{
     /*
      * Выполнить запрос с выборкой данных
      */
-    public function Select($query, $params = array())
-    {
+    public function Select($query, $params = array()){
         $result = $this->Query($query, $params);
         if ($result) {
             return $result->fetchAll();
         }
     }
 	
-	public static function getRow($query, $params = []) {
-        return self::query($query, $params)->fetch();
+    public function Insert($query, $params = array()){
+        $result = $this->Query($query, $params);
+            return $result;
+        
     }
-
-    /**
-     * 
-     * @param string $sql
-     * @param array $args
-     * @return integer ID
-     */
-    public static function insert($query, $params = []) {
-        self::query($query, $params);
-        return self::connect()->lastInsertId();
-    }
+	
+	
+//    public static function insert($query, $params = []) {
+//        self::query($query, $params);
+//        return self::connect()->lastInsertId();   }
 
     /**
      * 

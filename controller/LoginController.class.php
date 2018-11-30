@@ -18,8 +18,7 @@ class LoginController extends Controller{
 			 $this->log = 'no';
 		 }
 		 if(isset($_SESSION['session_login'])){ //Если уже вошел, то генерируем личный аккаунт
-			 $this->log = 'yes';
-			 $this->action = Login::isUser($_SESSION['session_login'], $_SESSION['session_password']);
+			 header("location: /user/");
 		 }
 		 
         if(isset($_POST['log'])){ // Проверка на логин или пароль, админ или просто юзер
@@ -35,10 +34,9 @@ class LoginController extends Controller{
 				Login::verifyAdmin();
 				
 			} elseif(Login::isUser($name, $pass) == true){ //Если логин и пароль юзера, то заходим в личный кабинет
-				$this->log = 'yes';
 				$_SESSION['session_login'] = $name;
-				$_SESSION['session_password'] = $pass;		
-				$this->action = Login::isUser($_SESSION['session_login'], $_SESSION['session_password']);
+				$_SESSION['session_password'] = $pass;
+				header("location: /user/");
 			} else { 
 				$this->action = "Your password and email do not match. Please try again ";
 			}
@@ -55,21 +53,26 @@ class LoginController extends Controller{
 			$password = htmlspecialchars($password);
 			$password = md5($password);
 			 
-			 if(Login::setUser($login, $name, $password) == false){
-				 $_SESSION['session_login'] = $name;
-				 $_SESSION['session_password'] = $password;
-				 $this->action = Login::isUser($_SESSION['session_login'], $_SESSION['session_password']);
-				 $this->log = 'yes';
+			 if(Login::getLogin($login) == true){
+					 $this->action = "This login is busy. Come up with a new!";
+			 }
+			 elseif(Login::setUser($login, $name, $password) == false){
+				 
+		
+				     $_SESSION['session_login'] = $login;
+				     $_SESSION['session_password'] = $password;
+				     header("location: /user/");
+				 
 			 } else {
 				 $this->action = "herna!";
 			 }
 		 }
 		 
 		 if(isset($_GET['loggout'])){ //Если нажата кнпока выйти, то удаляем сессию
-			     unset($_SESSION['session_login']);
+			    // unset($_SESSION['session_login']);
+			     session_destroy();
 			     header("location: /login/");
 		 }
-		 //var_dump($this->action);
         return ['login' => $this->action, 'status' => $this->log];
     }
 }

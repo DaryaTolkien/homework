@@ -1,7 +1,7 @@
 <?php
 
-class Controller
-{
+class Controller{
+	
     public $view = 'admin';
     public $title;
 
@@ -13,4 +13,5 @@ class Controller
     public function index($data) {
         return [];
     }
+	
 }

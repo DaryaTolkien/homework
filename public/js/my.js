@@ -25,7 +25,7 @@ function f(id_auhtor){ //Сортировка по авторам
 	});
    }
 
-function addBasket(id){ //Добавление в корзину 
+function addBasket(add_id){ //Добавление в корзину 
 	$('body').one('click', 'a#a', function(event){
     event.preventDefault(); 
   $.ajax({
@@ -41,80 +41,85 @@ function addBasket(id){ //Добавление в корзину
 		var obj = jQuery.parseJSON(response);
 		    $.each(obj, function(key,value) {
 				 console.log(value.amount);
-			    // $('#amount_header').empty();
 		         $('#amount_header').html('&#8381; : ' + value.amount);
              });
-		//$('#amount_header').empty();
-		//$('#amount_header').html('&#8381; : ' + obj[0].amount);
-    }
-});
-});
+        }
+    });
+  });
 }
 
 
 $(document).ready(function(){ //Функция загрзки фото
-  var files;
-  $('input[type=file]').on('change', function(){
-	files = this.files;
-	});
 
-  $('.sbutton').on('click', function(event){
+$('#my_form').on('submit', function(event){
 	event.preventDefault(); 
-	//var imgfile = $('imgfile').prop('files')[0];
 	var idfile = $('#idphoto').val();
-	if( typeof files == 'undefined' ) return; // ничего не делаем если files пустой
-	var data = new FormData(); // создадим объект данных формы
-		
-	$.each( files, function( key, value ){ // заполняем объект данных файлами в подходящем для отправки формате
-		data.append( key, value );
-	});
-	
-	data.append( 'my_file_upload', 1 ); // добавим переменную для идентификации запроса
+	var $that = $(this),
+	data = new FormData($that.get(0)); // создадим объект данных формы
+	data.append( 'idfile', idfile ); // добавим переменную для идентификации запроса
 	  $.ajax({
     url:"/user/",
     type:"POST",
-	cache:false,
 	async: true,
-    processData : false,
-    data:{ data : data, idfile : idfile },
+    contentType: false, // важно - убираем форматирование данных по умолчанию
+    processData: false, // важно - убираем преобразование строк по умолчанию
+    data: data,
     error: function (req, text, error) { // отслеживание ошибок во время выполнения ajax-запроса
            alert('Ошибочка! ' + text + ' : ' + error);
         },
     success: function (response){
-		alert(response);
-		//alert('kdkdkkd');
+		 var img = response.replace(/^"(.+(?="$))"$/, '$1');
+		 $('#avatar').html('<img src="/images/users/' + img + '" style="width: 250px; height: 350px; margin: 25px;" id="test">');
     }	  
   });
  });
 });
-/*
-function addPhoto(id, imgfile){ //Добавление фото в линчный кабинет
-	//$('body').one('click', 'input#input_img', function(event){
-	
-    //event.preventDefault(); 
-  $.ajax({
-    url:"/user/",
-    type:"POST",
-	cache:false,
-	async: true,
-    data:{ add_id },
-    error: function (req, text, error) { // отслеживание ошибок во время выполнения ajax-запроса
-           alert('Ошибочка! ' + text + ' : ' + error);
-        },
-    success: function (response){
-		var obj = jQuery.parseJSON(response);
-		    $.each(obj, function(key,value) {
-				 console.log(value.amount);
-			    // $('#amount_header').empty();
-		         $('#amount_header').html('&#8381; : ' + value.amount);
-             });
-		//$('#amount_header').empty();
-		//$('#amount_header').html('&#8381; : ' + obj[0].amount);
-    }
-});
-//});
+
+
+function updateName(val){ //Изменение в личном кабинете Имя
+	$('body').one('click', 'a.update_user', function(event){
+    event.preventDefault();
+		   var name = 'name';
+           $('#update_result').replaceWith('<input type="text" placeholder="' + val + '" id="input_update"/><input type="button" class="button_user_update" onclick="textValue()" id="name">');
+	       $('#img_update').replaceWith('');
+  });
 }
-*/
+
+function updateTel(val){ //Изменение в личном кабинете Телефон
+	$('body').one('click', 'a.update_user', function(event){
+    event.preventDefault(); 
+           $('#update_result2').replaceWith('<input type="text" placeholder="' + val + '" id="input_update"/><input type="button" class="button_user_update" onclick="textValue()" id="tel">');
+	       $('#img_update2').replaceWith('');
+  });
+}
+
+function updateAdres(val){ //Изменение в личном кабинете Адрес                                                                                        
+	$('body').one('click', 'a.update_user', function(event){
+    event.preventDefault(); 
+           $('#update_result3').replaceWith('<input type="text" placeholder="' + val + '" id="input_update"/><input type="button" class="button_user_update" onclick="textValue()" id="adres">');
+	       $('#img_update3').replaceWith('');
+  });
+}
+
+		function textValue(){
+		   var text = document.getElementById("input_update").value;
+		   var variable = document.querySelector(".button_user_update").getAttribute("id");
+           $.ajax({
+           url:"/user/",
+           type:"POST",
+	       cache:false,
+	       async: true,
+           data: {text:text, variable:variable},
+           error: function (req, text, error) { // отслеживание ошибок во время выполнения ajax-запроса
+                alert('Ошибочка! ' + text + ' : ' + error);
+            },
+           success: function (){ 
+			   $('span.' + variable).replaceWith(text);
+        }
+	  });
+    }
+
+
 
 
 //Модальное окно

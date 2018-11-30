@@ -43,7 +43,9 @@ $_GET['page'] = 'Index';
 				'catalogs' => Catalog::getCatalog(),
 				'basket' => Basket::getBasket(session_id()),
 				'count' => Basket::getCount(session_id()), //функция подсчёта стоимости корзины, выводящаяся на всех страницах
-				'admin' => Admin::active(1)
+				'admin' => Admin::active(1),
+				'user_block' => Login::isUser($_SESSION['session_login'], $_SESSION['session_password']),
+				'sess' => $_SESSION
             ];
 
             $view = $controller->view . '/' . $methodName . '.html';
@@ -58,6 +60,25 @@ $_GET['page'] = 'Index';
             }
         }
     }
-
-
+	
+		//public function getGlobals() {
+          //   return array(
+          //   'session'   => $_SESSION,
+         // ) ;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

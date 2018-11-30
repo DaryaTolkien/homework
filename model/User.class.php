@@ -37,9 +37,12 @@ class User extends Model {
    }
 	
 	public static function UpdateImg($img, $id){
-		header("location: /login/");
 		return db::getInstance()->Select(
             "UPDATE users SET img = '$img' WHERE id = $id");
-		
+	}
+	
+	public static function updateText($variable, $text, $login){
+		return db::getInstance()->Select(
+            "UPDATE users SET $variable = '$text' WHERE login = '$login'");
 	}
 }

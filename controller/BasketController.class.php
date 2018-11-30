@@ -43,7 +43,7 @@ class BasketController extends Controller{
 		}
 		
         $basket = Basket::getBasket(session_id());
-        return ['basket' => $basket, 'count' => $count];
+        return ['basket' => $basket, 'count' => $count, 'sess' => $_SESSION];
 	}
 	
 	public function success($data){

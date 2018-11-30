@@ -2,20 +2,12 @@
 
 <div class="content">
 
-
-
 {% if content_data.status  == 'no' %}
 
 {% include '/login/login.html' %}
 
-{% endif %}
+{% endif %} 
 
-{% if content_data.status  == 'yes' %}
-
-{% include '/user/index.html' %}
-
-{% endif %}
-	
 </div>
 
 {% include 'footer.html' %}

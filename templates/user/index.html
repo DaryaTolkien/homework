@@ -1,18 +1,26 @@
-  {% for value in content_data.login %}
+{% include 'header.html' %}
+<div class="content">
+{% for value in user_block %}
 
 <span style="margin: 30px;">HELLO! <span style="font-weight: 600;">{{ value.login }}</span></span>
 <div class="login_user">
 	<div class="login_user_block">
-        <div style="display: block; margin: 25px;">Your name: {{ value.name }}</div>
-        <div style="display: block; margin: 25px;">Your phone: {{ value.tel }}</div>
-	    <div style="display: block; margin: 25px;">Your adres: {{ value.adres }}</div>
+		<form action="">
+			
+           <div style="display: block; margin: 25px;">Your name: <span class="name">{{ value.name }}</span><a class="update_user" href="#" onclick="updateName('{{ value.name }}')"><img src="/images/server/update.png" id="img_update"></a><div id="update_result" style="display: inline-block;"></div></div>
+			
+           <div style="display: block; margin: 25px;">Your phone: <span class="tel">{{ value.tel }}</span><a class="update_user" href="#" onclick="updateTel({{ value.tel }})"><img src="/images/server/update.png" id="img_update2"></a><div id="update_result2" style="display: inline-block;"></div></div>
+			
+	       <div style="display: block; margin: 25px;">Your adres: <span class="adres">{{ value.adres }}</span><a class="update_user" href="#" onclick="updateAdres('{{ value.adres }}')"><img src="/images/server/update.png" id="img_update3"></a><div id="update_result3" style="display: inline-block;"></div></div>
+			
+		</form>
 	</div>
     <div>
-		<img src="/images/users/{{ value.img }}" style="width: 250px; height: 350px; margin: 25px;">
-		<form action="" enctype="multipart/form-data">
+		<div id="avatar"><img src="/images/users/{{ value.img }}" style="width: 250px; height: 350px; margin: 25px;"></div>
+		<form action="" id="my_form" enctype="multipart/form-data">
              <input id="imgfile" name="imgfile" type="file">
 			 <input id="idphoto" type="hidden" value="{{ value.id }}" >
-             <input class="sbutton" value="Загрузить" type="submit" onchange=addPhoto(this.input) id="input_img">
+             <input class="sbutton" value="Загрузить" type="submit" id="input_img">
          </form>
 	 </div>
 	
@@ -21,3 +29,5 @@
 
 
 <a href="/login/?loggout=exit" class="button-success">Loggout</a>
+</div>
+{% include 'footer.html' %}
